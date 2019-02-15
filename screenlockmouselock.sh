@@ -3,20 +3,22 @@
 # http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 # Is a useful one-liner which will give you the full directory name
 # of the script no matter where it is being called from
+# Use this if you aren't using the CONFIG_DIR
 WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WORKINGFILE_DIR=$HOME/.screenlockmouselock
-DAEMON_PID=$WORKINGFILE_DIR/daemon_pid
-MONITOR_PID=$WORKINGFILE_DIR/monitor_pid
-FIFO=$WORKINGFILE_DIR/lock_unlock_fifo
+CONFIG_DIR=$HOME/.screenlockmouselock
+DAEMON_PID=$CONFIG_DIR/daemon_pid
+MONITOR_PID=$CONFIG_DIR/monitor_pid
+FIFO=$CONFIG_DIR/lock_unlock_fifo
 SCRIPTNAME=$0
 
+XINPUT_PROP_ID=11 #update this to your mouse's ID
 
 do_if_unlocked(){
-	xinput set-prop 11 "Device Enabled" 1
+	xinput set-prop $XINPUT_PROP_ID "Device Enabled" 1
 }
 
 do_if_locked(){
-xinput set-prop 11 "Device Enabled" 0
+	xinput set-prop $XINPUT_PROP_ID "Device Enabled" 0
 }
 
 run_monitor(){

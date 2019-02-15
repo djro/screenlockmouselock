@@ -3,7 +3,7 @@ Locks a usb port (currently hard coded to xinput id=11) when the user session is
 If you have a mouse plugged into the coded usb port, the script will keep mouse movements from waking the monitor when the screen is locked.
 
 
-1. To find which port your mouse is plugged into, run: xinput -list. Update the id in screenlockmouselock.sh (xinput set-prop 11) to your id
+1. To find which port your mouse is plugged into, run: xinput -list. Update the id variable in screenlockmouselock.sh (XINPUT_PROP_ID) to your id
 
 2. Make sure to give script executable permissions (chmod +x screenlockmouselock.sh)
 
